@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Масив з випадковими числами</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Масив з випадковими числами</h2>
+    <button onclick="generateArray()">Генерувати масив</button>
+    <p id="inputArray"></p>
+    <p id="outputArray"></p>
+</div>
+
+<script>
+    function generateArray() {
+        var length = parseInt(prompt("Введіть кількість елементів у масиві:"));
+        var array = [];
+        for (var i = 0; i < length; i++) {
+            array.push(Math.floor(Math.random() * 100) + 1); 
+        }
+        document.getElementById("inputArray").innerHTML = "Вхідний масив: " + array.join(", ");
+        
+        var evenNumbers = array.filter((el, index) => el % 2 === 0);
+        var oddNumbers = array.filter((el, index) => el % 2 !== 0);
+        var maxEven = Math.max(...evenNumbers);
+        var minEven = Math.min(...evenNumbers);
+        var maxOdd = Math.max(...oddNumbers);
+        var minOdd = Math.min(...oddNumbers);
+        
+        var sortedArray = array.slice().sort((a, b) => b - a);
+        document.getElementById("outputArray").innerHTML = "Мінімальне значення серед парних елементів: " + minEven + "<br>" +
+            "Максимальне значення серед парних елементів: " + maxEven + "<br>" +
+            "Мінімальне значення серед непарних елементів: " + minOdd + "<br>" +
+            "Максимальне значення серед непарних елементів: " + maxOdd + "<br>" +
+            "Вихідний масив (впорядкований): " + sortedArray.join(", ");
+    }
+</script>
+</body>
+</html>
